@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "RPGPlayerController.generated.h"
 
+class UDataAsset_InputConfig;
 struct FInputActionValue;
 
 UCLASS()
@@ -15,8 +16,12 @@ class RPGDEMO_API ARPGPlayerController : public APlayerController
 
 public:
 	virtual void SetupInputComponent() override;
-
+	virtual void BeginPlay() override;
+	
 private:
-	void Move(const FInputActionValue& value);
-	void Look(const FInputActionValue& value);
+	UPROPERTY(EditAnywhere, Category="Input")
+	TObjectPtr<UDataAsset_InputConfig> InputConfig;
+
+	void Move(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
 };

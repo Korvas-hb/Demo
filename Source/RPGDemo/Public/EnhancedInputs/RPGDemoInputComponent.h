@@ -5,15 +5,28 @@
 #include "CoreMinimal.h"
 #include "EnhancedInputComponent.h"
 #include "GameplayTagContainer.h"
+#include "DataAssets/DataAsset_InputConfig.h"
 #include "RPGDemoInputComponent.generated.h"
 
-class UDataAsset_InputConfig;
 UCLASS()
 class RPGDEMO_API URPGDemoInputComponent : public UEnhancedInputComponent
 {
 	GENERATED_BODY()
 
 public:
-	void BindNativeInputAction(const UDataAsset_InputConfig* InInputConfig,const FGameplayTag& InInputTag,ETriggerEvent TriggerEvent,UObject* Object, FName FunctionName);
+	template<class UserClass,typename CallBackFunc>
+	void BindNativeInputAction(const UDataAsset_InputConfig* InInputConfig,const FGameplayTag& InInputTag,ETriggerEvent TriggerEvent,UserClass* Object, CallBackFunc FunctionName);
 	
 };
+
+template <class UserClass, typename CallBackFunc>
+void URPGDemoInputComponent::BindNativeInputAction(const UDataAsset_InputConfig* InInputConfig,
+	const FGameplayTag& InInputTag, ETriggerEvent TriggerEvent, UserClass* Object, CallBackFunc FunctionName)
+{
+	checkf(InInputConfig,TEXT("请加入DataAsset"));
+
+	if (const UInputAction* InputAction	= InInputConfig->FindNativeInputAction(InInputTag))
+	{
+		BindAction(InputAction, TriggerEvent, Object, FunctionName);
+	}
+}
