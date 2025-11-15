@@ -3,27 +3,31 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystemInterface.h"
 #include "GameFramework/Character.h"
 #include "RPGDemoCharacterBase.generated.h"
 
+class URPGAttributeSet;
+class URPGAbilitySystemComponent;
+
 UCLASS()
-class RPGDEMO_API ARPGDemoCharacterBase : public ACharacter
+class RPGDEMO_API ARPGDemoCharacterBase : public ACharacter,public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ARPGDemoCharacterBase();
 
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	URPGAttributeSet* GetRPGAttributeSet() const;
+	
+	
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="AbilitySystem")
+	TObjectPtr<URPGAbilitySystemComponent> AbilitySystemComponent;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="AbilitySystem")
+	TObjectPtr<URPGAttributeSet> AttributeSet;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	virtual void PossessedBy(AController* NewController) override;
 };

@@ -3,27 +3,42 @@
 
 #include "Character/RPGDemoCharacterBase.h"
 
+#include "AbilitySystem/RPGAbilitySystemComponent.h"
+#include "AbilitySystem/RPGAttributeSet.h"
+
 ARPGDemoCharacterBase::ARPGDemoCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
-	PrimaryActorTick.bStartWithTickEnabled = false;	
+	PrimaryActorTick.bStartWithTickEnabled = false;
+
+	AbilitySystemComponent = CreateDefaultSubobject<URPGAbilitySystemComponent>("AbilitySystemComponent");
+	AttributeSet = CreateDefaultSubobject<URPGAttributeSet>("AttributeSet");
 }
 
-void ARPGDemoCharacterBase::BeginPlay()
+UAbilitySystemComponent* ARPGDemoCharacterBase::GetAbilitySystemComponent() const
 {
-	Super::BeginPlay();
+	return AbilitySystemComponent;
+}
+
+URPGAttributeSet* ARPGDemoCharacterBase::GetRPGAttributeSet() const
+{
+	return AttributeSet;
+}
+
+void ARPGDemoCharacterBase::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
 	
+	if (URPGAbilitySystemComponent* RPGAbilitySystemComponent = Cast<URPGAbilitySystemComponent>(AbilitySystemComponent))
+	{
+		RPGAbilitySystemComponent->InitAbilityActorInfo(this,this);
+		FString name = this->GetName();
+		const FString FSText = FString::Printf(TEXT("Owner Actor: %s, AvatarActor: %s"),
+											   *RPGAbilitySystemComponent->GetOwnerActor()->GetActorLabel(),
+											   *RPGAbilitySystemComponent->GetAvatarActor()->GetActorLabel()
+		);
+		UE_LOG(LogTemp,Warning,TEXT("Ability System Component valid:%s"), *FSText);
+	}
 }
 
-void ARPGDemoCharacterBase::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-void ARPGDemoCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
 

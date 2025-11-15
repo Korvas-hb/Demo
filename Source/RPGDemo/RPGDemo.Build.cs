@@ -15,7 +15,9 @@ public class RPGDemo : ModuleRules
 			"Engine", 
 			"InputCore",
 			"GameplayTags",
-			"EnhancedInput"
+			"EnhancedInput",
+			"GameplayAbilities",
+			"GameplayTasks"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });

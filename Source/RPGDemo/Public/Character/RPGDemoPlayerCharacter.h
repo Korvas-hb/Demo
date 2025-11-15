@@ -13,5 +13,9 @@ UCLASS()
 class RPGDEMO_API ARPGDemoPlayerCharacter : public ARPGDemoCharacterBase
 {
 	GENERATED_BODY()
+public:
+	ARPGDemoPlayerCharacter();
 	
+protected:
+	virtual void PossessedBy(AController* NewController) override;
 };
