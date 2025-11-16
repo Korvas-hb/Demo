@@ -6,6 +6,8 @@
 #include "Abilities/GameplayAbility.h"
 #include "RPGGameplayAbility.generated.h"
 
+class UPawnCombatComponent;
+
 UENUM(BlueprintType)
 enum class ERPGAbilityActivatePolicy:uint8
 {
@@ -22,7 +24,12 @@ public:
 	UPROPERTY(EditAnywhere, Category="Abilities")
 	ERPGAbilityActivatePolicy ActivatePolicy;
 
+	UFUNCTION(BlueprintPure, Category="Abilities")
+	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
+
 protected:
 	virtual void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 	virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
+
+	
 };

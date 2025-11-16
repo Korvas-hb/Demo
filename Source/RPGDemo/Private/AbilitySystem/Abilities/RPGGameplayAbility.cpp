@@ -4,6 +4,12 @@
 #include "AbilitySystem/Abilities/RPGGameplayAbility.h"
 
 #include "AbilitySystemComponent.h"
+#include "Components/PawnCombatComponent.h"
+
+UPawnCombatComponent* URPGGameplayAbility::GetPawnCombatComponentFromActorInfo() const
+{
+	return GetAvatarActorFromActorInfo()->FindComponentByClass<UPawnCombatComponent>();
+}
 
 void URPGGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
