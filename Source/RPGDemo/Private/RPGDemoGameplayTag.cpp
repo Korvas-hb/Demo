@@ -5,6 +5,15 @@
 
 namespace RPGDemoGameplayTags
 {
+	// #########################InputTag  Begin###############
 	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(InputTag_Move, "InputTag.Move");
 	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(InputTag_Look, "InputTag.Look");
+	// #########################InputTag  End#################
+	
+
+
+	// #########################GA  Begin#####################
+	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(GA_SpawnWeapon, "GA.SpawnWeapon");
+
+	// #########################GA  End#####################
 }

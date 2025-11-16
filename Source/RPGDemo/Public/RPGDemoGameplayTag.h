@@ -7,6 +7,13 @@
 
 namespace RPGDemoGameplayTags
 {
+	// #########################InputTag  Begin###############
 	RPGDEMO_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Move);
 	RPGDEMO_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Look);
+	// #########################InputTag  End#################
+
+	// #########################GA  Begin#####################
+	RPGDEMO_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(GA_SpawnWeapon);
+	
+	// #########################GA  End#####################
 }
