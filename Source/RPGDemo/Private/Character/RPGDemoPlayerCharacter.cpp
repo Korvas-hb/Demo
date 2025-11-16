@@ -5,6 +5,7 @@
 
 #include "AbilitySystem/RPGAbilitySystemComponent.h"
 #include "AbilitySystem/RPGAttributeSet.h"
+#include "DataAssets/DataAsset_StartUpDataBase.h"
 
 ARPGDemoPlayerCharacter::ARPGDemoPlayerCharacter()
 {
@@ -14,6 +15,13 @@ ARPGDemoPlayerCharacter::ARPGDemoPlayerCharacter()
 void ARPGDemoPlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-	
+
+	if (!CharacterStartUpData.IsNull())
+	{
+		if (UDataAsset_StartUpDataBase* StartUpDataBase =CharacterStartUpData.LoadSynchronous())
+		{
+			StartUpDataBase->GiveDataAssetAbilitiesToASC(AbilitySystemComponent,1);
+		}
+	}
 
 }

@@ -6,6 +6,7 @@
 #include "Character/RPGDemoCharacterBase.h"
 #include "RPGDemoPlayerCharacter.generated.h"
 
+class UDataAsset_StartUpDataBase;
 /**
  * 
  */
@@ -18,4 +19,7 @@ public:
 	
 protected:
 	virtual void PossessedBy(AController* NewController) override;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSoftObjectPtr<UDataAsset_StartUpDataBase> CharacterStartUpData;
 };
