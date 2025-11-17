@@ -3,3 +3,11 @@
 
 #include "AbilitySystem/RPGAbilitySystemComponent.h"
 
+void URPGAbilitySystemComponent::InputAbilityPressed(FGameplayTag InInputTag)
+{
+	
+}
+
+void URPGAbilitySystemComponent::InputAbilityReleased(FGameplayTag InInputTag)
+{
+}

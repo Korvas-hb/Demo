@@ -6,6 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "StructForNeedInfo.generated.h"
 
+class URPGGameplayAbility;
 class UInputAction;
 class AWeaponBase;
 
@@ -47,4 +48,19 @@ struct FDemoInputActionConfig
 	FGameplayTag InputTag;
 
 	bool IsValid() const { return InputTag.IsValid() && InputAction; };
+};
+
+
+USTRUCT(BlueprintType)
+struct FHeroOnlyAbilitySet
+{
+	GENERATED_BODY()
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<URPGGameplayAbility> InputHeroGA;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input Tag")
+	FGameplayTag InputAbilityTag;
+
+	bool IsValid() const { return InputAbilityTag.IsValid(); };
+	
 };

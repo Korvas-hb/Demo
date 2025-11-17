@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/PlayerController.h"
 #include "RPGPlayerController.generated.h"
 
@@ -16,7 +17,7 @@ class RPGDEMO_API ARPGPlayerController : public APlayerController
 
 public:
 	virtual void SetupInputComponent() override;
-	virtual void BeginPlay() override;
+	virtual void BeginPlay() override;	
 	
 private:
 	UPROPERTY(EditAnywhere, Category="Input")
@@ -24,4 +25,7 @@ private:
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+
+	void OnInputAbilityPressed(FGameplayTag InInputTag);
+	void OnInputAbilityReleased(FGameplayTag InInputTag);
 };

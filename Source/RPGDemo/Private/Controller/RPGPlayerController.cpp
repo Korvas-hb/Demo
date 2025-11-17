@@ -21,6 +21,8 @@ void ARPGPlayerController::SetupInputComponent()
 		                                          ETriggerEvent::Triggered, this, &ThisClass::Move);
 		DemoInputComponent->BindNativeInputAction(InputConfig, RPGDemoGameplayTags::InputTag_Look,
 		                                          ETriggerEvent::Triggered, this, &ThisClass::Look);
+
+		// DemoInputComponent->BindGameplayAbilityInputAction(InputConfig,ETriggerEvent::Started,ETriggerEvent::Completed,)
 	}
 }
 
@@ -80,4 +82,12 @@ void ARPGPlayerController::Look(const FInputActionValue& Value)
 		}
 	}
 	
+}
+
+void ARPGPlayerController::OnInputAbilityPressed(FGameplayTag InInputTag)
+{
+}
+
+void ARPGPlayerController::OnInputAbilityReleased(FGameplayTag InInputTag)
+{
 }

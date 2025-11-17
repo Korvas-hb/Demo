@@ -13,5 +13,8 @@ UCLASS()
 class RPGDEMO_API URPGAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
-	
+
+public:
+	void InputAbilityPressed(FGameplayTag InInputTag);
+	void InputAbilityReleased(FGameplayTag InInputTag);
 };
