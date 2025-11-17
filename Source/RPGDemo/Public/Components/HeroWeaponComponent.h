@@ -5,31 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Components/PawnExtensionComponentBase.h"
+#include "StructForNeedInfo.h"
 #include "HeroWeaponComponent.generated.h"
 
 class AWeaponBase;
-
-USTRUCT(BlueprintType)
-struct FRegisterWeaponWithTag
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, Category="Weapon")
-	TObjectPtr<AWeaponBase> RegisterWeapon;
-
-	UPROPERTY(EditAnywhere, Category="Weapon")
-	FGameplayTag RegisterTag;
-
-	UPROPERTY(VisibleAnywhere)
-	bool bRegisteredAsEquipping;
-
-	FRegisterWeaponWithTag():RegisterWeapon(nullptr), RegisterTag(FGameplayTag()), bRegisteredAsEquipping(false){}
-	
-	FRegisterWeaponWithTag(AWeaponBase* InWeapon, FGameplayTag InTag, bool bRegister = false) :
-		RegisterWeapon(InWeapon), RegisterTag(InTag), bRegisteredAsEquipping(bRegister)
-	{
-	}
-};
 
 UCLASS()
 class RPGDEMO_API UHeroWeaponComponent : public UPawnExtensionComponentBase

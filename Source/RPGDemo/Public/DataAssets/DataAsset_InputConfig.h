@@ -5,22 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
+#include "StructForNeedInfo.h"
 #include "DataAsset_InputConfig.generated.h"
 
 class UInputMappingContext;
 class UInputAction;
-
-USTRUCT(BlueprintType)
-struct FDemoInputActionConfig
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TObjectPtr<UInputAction> InputAction;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input Tag") 
-	FGameplayTag InputTag;
-};
 
 UCLASS()
 class RPGDEMO_API UDataAsset_InputConfig : public UDataAsset
@@ -30,6 +19,9 @@ class RPGDEMO_API UDataAsset_InputConfig : public UDataAsset
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FDemoInputActionConfig> NativeInputActionConfigs;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FDemoInputActionConfig> AbilityInputActionConfigs;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UInputMappingContext> DefaultMappingContext;
