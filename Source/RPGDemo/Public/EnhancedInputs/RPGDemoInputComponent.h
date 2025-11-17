@@ -50,8 +50,10 @@ void URPGDemoInputComponent::BindGameplayAbilityInputAction(const UDataAsset_Inp
 	{
 		if (AbilityInputAction.IsValid())
 		{
-			BindAction(AbilityInputAction.InputAction, BeginTriggerEvent, Object, StartFuncName);
-			BindAction(AbilityInputAction.InputAction, EndTriggerEvent, Object, EndFuncName);
+			BindAction(AbilityInputAction.InputAction, BeginTriggerEvent, Object, StartFuncName,
+			           AbilityInputAction.InputTag);
+			BindAction(AbilityInputAction.InputAction, EndTriggerEvent, Object, EndFuncName,
+			           AbilityInputAction.InputTag);
 		}
 	}
 }

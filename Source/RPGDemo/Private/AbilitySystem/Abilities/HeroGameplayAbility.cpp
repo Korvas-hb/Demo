@@ -24,11 +24,7 @@ ARPGPlayerController* UHeroGameplayAbility::GetHeroControllerFromActorInfo()
 	return CachedHeroController.IsValid() ? CachedHeroController.Get() : nullptr;
 }
 
-UHeroCombatComponent* UHeroGameplayAbility::GetHeroCombatComponentFromActorInfo() const
+UHeroCombatComponent* UHeroGameplayAbility::GetHeroCombatComponentFromActorInfo()
 {
-	if (CachedHeroCharacter.IsValid())
-	{
-		return CachedHeroCharacter->GetHeroCombatComponent();
-	}
-	return nullptr;
+	return GetHeroCharacterFromActorInfo()->GetHeroCombatComponent();
 }

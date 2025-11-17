@@ -17,9 +17,11 @@ class RPGDEMO_API UDataAsset_InputConfig : public UDataAsset
 	GENERATED_BODY()
 
 public:
+	// 自己有的原生按键 Action和标签
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FDemoInputActionConfig> NativeInputActionConfigs;
 
+	// 要按键触发的技能的GA的Action和标签
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FDemoInputActionConfig> AbilityInputActionConfigs;
 

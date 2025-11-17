@@ -24,7 +24,7 @@ public:
 	ARPGPlayerController* GetHeroControllerFromActorInfo();
 
 	UFUNCTION(BlueprintPure, Category="Abilities")
-	UHeroCombatComponent* GetHeroCombatComponentFromActorInfo() const;
+	UHeroCombatComponent* GetHeroCombatComponentFromActorInfo();
 
 private:
 	TWeakObjectPtr<ARPGDemoPlayerCharacter> CachedHeroCharacter;

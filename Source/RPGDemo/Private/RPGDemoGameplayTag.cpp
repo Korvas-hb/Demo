@@ -24,4 +24,11 @@ namespace RPGDemoGameplayTags
 	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(GA_UnEquipWeapon_Axe, "GA.UnEquipWeapon.Axe");
 
 	// #########################GA  End#####################
+
+
+	// #########################Event  Begin###############
+	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(Player_Event_Equip_Axe, "Player.Event.Equip.Axe");
+	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(Player_Event_UnEquip_Axe, "Player.Event.UnEquip.Axe");
+	// #########################Event  End#################
+	
 }

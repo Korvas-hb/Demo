@@ -23,7 +23,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Combat|Weapon")
 	AWeaponBase* GetCharacterCarriedWeaponByTag(FGameplayTag InWeaponTagToGet) const;
 
-	UPROPERTY(BlueprintReadOnly, Category="Combat|Weapon")
+	UPROPERTY(BlueprintReadWrite, Category="Combat|Weapon")
 	FGameplayTag CurrentCharacterEquippingTag;
 
 	// 获取到现在正在持有的武器

@@ -6,9 +6,7 @@
 #include "AbilitySystemComponent.h"
 #include "RPGAbilitySystemComponent.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class RPGDEMO_API URPGAbilitySystemComponent : public UAbilitySystemComponent
 {
