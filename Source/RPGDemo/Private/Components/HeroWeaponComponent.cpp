@@ -9,15 +9,15 @@ void UHeroWeaponComponent::RegisterSpawnedWeapon(AWeaponBase* InWeapon, FGamepla
 	if (InWeapon && InWeaponTag.IsValid())
 	{
 		bool bHasContain = false;
-		for (const auto val :RegisterWeaponWithTagArray)
+		for (const auto val : RegisterWeaponWithTagArray)
 		{
 			if (InWeaponTag == val.RegisterTag)
 			{
 				bHasContain = true;
 			}
 		}
-		
-		if (bHasContain) return ;
+
+		if (bHasContain) return;
 		FRegisterWeaponWithTag RegisterWeapon(InWeapon, InWeaponTag, bRegisterAsEquipped);
 		RegisterWeaponWithTagArray.Push(RegisterWeapon);
 		if (bRegisterAsEquipped)
@@ -47,4 +47,16 @@ AWeaponBase* UHeroWeaponComponent::GetCharacterCurrentEquipWeapon() const
 		return GetCharacterCarriedWeaponByTag(CurrentCharacterEquippingTag);
 	}
 	return nullptr;
+}
+
+void UHeroWeaponComponent::SetCurrentEquipWeaponTag(FGameplayTag InWeaponTag)
+{
+	CurrentCharacterEquippingTag = CurrentCharacterEquippingTag != InWeaponTag
+		                               ? InWeaponTag
+		                               : CurrentCharacterEquippingTag;
+}
+
+void UHeroWeaponComponent::RemoveCurrentEquipWeapon()
+{
+	CurrentCharacterEquippingTag = FGameplayTag();
 }

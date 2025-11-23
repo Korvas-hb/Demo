@@ -30,6 +30,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Combat|Weapon")
 	AWeaponBase* GetCharacterCurrentEquipWeapon() const;
 
+	UFUNCTION(BlueprintCallable,Category="Combat|Weapon")
+	void SetCurrentEquipWeaponTag(FGameplayTag InWeaponTag);
+
+	UFUNCTION(BlueprintCallable,Category="Combat|Weapon")
+	void RemoveCurrentEquipWeapon();
+	
 private:
 	TArray<FRegisterWeaponWithTag> RegisterWeaponWithTagArray;
 };

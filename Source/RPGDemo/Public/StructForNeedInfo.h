@@ -6,11 +6,12 @@
 #include "GameplayTagContainer.h"
 #include "StructForNeedInfo.generated.h"
 
+class UHeroLinkedAnimLayer;
 class URPGGameplayAbility;
 class UInputAction;
 class AWeaponBase;
 
-// 注册用的数据结构
+// 注册武器用的数据结构
 USTRUCT(BlueprintType)
 struct FRegisterWeaponWithTag
 {
@@ -63,4 +64,13 @@ struct FHeroOnlyAbilitySet
 
 	bool IsValid() const { return InputAbilityTag.IsValid(); };
 	
+};
+
+USTRUCT(BlueprintType)
+struct FWeaponData
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
+	TSubclassOf<UHeroLinkedAnimLayer> WeaponAnimLayerToLink;
 };

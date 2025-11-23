@@ -19,7 +19,10 @@ class RPGDEMO_API ARPGDemoPlayerCharacter : public ARPGDemoCharacterBase
 public:
 	ARPGDemoPlayerCharacter();
 
-	UHeroCombatComponent* GetHeroCombatComponent() const {return HeroCombatComponent;};
+	UHeroCombatComponent* GetHeroCombatComponent() const {return HeroCombatComponent;}
+
+	UFUNCTION(BlueprintPure)
+	UHeroCombatComponent* K2_GetHeroCombatComponent() const {return HeroCombatComponent;}
 	
 protected:
 	virtual void PossessedBy(AController* NewController) override;

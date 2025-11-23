@@ -4,9 +4,15 @@
 #include "Components/HeroCombatComponent.h"
 
 #include "Components/HeroWeaponComponent.h"
+#include "Weapon/HeroWeapon.h"
 
 UHeroCombatComponent::UHeroCombatComponent()
 {
 	HeroWeaponComponent = CreateDefaultSubobject<UHeroWeaponComponent>("HeroWeaponComponent");
 	
+}
+
+AHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag InTag) const
+{
+	return Cast<AHeroWeapon>(HeroWeaponComponent->GetCharacterCarriedWeaponByTag(InTag));
 }
