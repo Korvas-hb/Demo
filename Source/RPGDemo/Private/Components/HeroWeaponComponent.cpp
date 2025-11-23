@@ -56,7 +56,7 @@ void UHeroWeaponComponent::SetCurrentEquipWeaponTag(FGameplayTag InWeaponTag)
 		                               : CurrentCharacterEquippingTag;
 }
 
-void UHeroWeaponComponent::RemoveCurrentEquipWeapon()
+void UHeroWeaponComponent::RemoveCurrentEquipWeaponTag()
 {
 	CurrentCharacterEquippingTag = FGameplayTag();
 }

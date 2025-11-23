@@ -34,7 +34,7 @@ public:
 	void SetCurrentEquipWeaponTag(FGameplayTag InWeaponTag);
 
 	UFUNCTION(BlueprintCallable,Category="Combat|Weapon")
-	void RemoveCurrentEquipWeapon();
+	void RemoveCurrentEquipWeaponTag();
 	
 private:
 	TArray<FRegisterWeaponWithTag> RegisterWeaponWithTagArray;

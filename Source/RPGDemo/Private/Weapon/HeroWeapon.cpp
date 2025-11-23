@@ -3,3 +3,12 @@
 
 #include "Weapon/HeroWeapon.h"
 
+void AHeroWeapon::SaveGrantedWeaponAbilitySpecHandles(const TArray<FGameplayAbilitySpecHandle>& InSpecHandles)
+{
+	GrantedWeaponAbilitySpecHandles = InSpecHandles;
+}
+
+TArray<FGameplayAbilitySpecHandle> AHeroWeapon::GetGrantedAbilitySpecHandles() const
+{
+	return GrantedWeaponAbilitySpecHandles;
+}

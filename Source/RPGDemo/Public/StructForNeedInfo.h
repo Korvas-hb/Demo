@@ -6,6 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "StructForNeedInfo.generated.h"
 
+class UInputMappingContext;
 class UHeroLinkedAnimLayer;
 class URPGGameplayAbility;
 class UInputAction;
@@ -73,4 +74,11 @@ struct FWeaponData
 	
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	TSubclassOf<UHeroLinkedAnimLayer> WeaponAnimLayerToLink;
+
+	// 装备武器之后的IMP
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TObjectPtr<UInputMappingContext> WeaponMappingContext;
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	TArray<FHeroOnlyAbilitySet> HeroWeaponAbilities;
 };
