@@ -24,4 +24,5 @@ public:
 
 	void InputAbilityPressed(FGameplayTag InInputTag);
 	void InputAbilityReleased(FGameplayTag InInputTag);
+	
 };
