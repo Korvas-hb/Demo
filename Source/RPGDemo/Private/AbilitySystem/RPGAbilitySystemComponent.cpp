@@ -21,7 +21,6 @@ void URPGAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FHeroOnly
 
 		OutGrantedAbilitySpecHandles.AddUnique(Spec.Handle);
 		GiveAbility(Spec);
-		StaticClass()->ChildProperties->
 	}
 }
 
