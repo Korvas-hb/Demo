@@ -6,6 +6,7 @@
 #include "Character/RPGDemoCharacterBase.h"
 #include "RPGDemoEnemyCharacter.generated.h"
 
+class UDataAsset_EnemyStartUpData;
 class UEnemyCombatComponent;
 /**
  * 
@@ -20,8 +21,12 @@ public:
 	FORCEINLINE UEnemyCombatComponent* GetEnemyCombatComponent() const { return EnemyCombatComponent; }
 
 protected:
+	virtual void PossessedBy(AController* NewController) override;
+	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Combat")
 	TObjectPtr<UEnemyCombatComponent> EnemyCombatComponent;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSoftObjectPtr<UDataAsset_EnemyStartUpData> EnemyStartUpData;
 	
 };

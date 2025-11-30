@@ -6,6 +6,7 @@
 #include "DataAssets/DataAsset_StartUpDataBase.h"
 #include "DataAsset_EnemyStartUpData.generated.h"
 
+class UEnemyGameplayAbility;
 /**
  * 
  */
@@ -13,5 +14,12 @@ UCLASS()
 class RPGDEMO_API UDataAsset_EnemyStartUpData : public UDataAsset_StartUpDataBase
 {
 	GENERATED_BODY()
+
+public:
+	virtual void GiveDataAssetAbilitiesToASC(URPGAbilitySystemComponent* ASC, int32 ApplyLevel = 1) override;
+
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = "StartUpData")
+	TArray<TSubclassOf<UEnemyGameplayAbility>> EnemyOnlyAbilities;
 	
 };
