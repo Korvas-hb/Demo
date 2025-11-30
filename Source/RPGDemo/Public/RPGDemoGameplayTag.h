@@ -38,4 +38,8 @@ namespace RPGDemoGameplayTags
 	// #########################State  Begin###############
 	RPGDEMO_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_State_JumpToFinish);
 	// #########################State  End#################
+
+	// #########################Enemy Weapon  Begin###############
+	RPGDEMO_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon);
+	// #########################Enemy Weapon  End###############
 }

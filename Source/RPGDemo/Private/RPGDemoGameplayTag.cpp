@@ -27,8 +27,7 @@ namespace RPGDemoGameplayTags
 	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(GA_Attack_Heavy_Axe, "GA.Attack.Heavy.Axe");
 
 	// #########################GA  End#####################
-
-
+	
 	// #########################Event  Begin###############
 	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(Player_Event_Equip_Axe, "Player.Event.Equip.Axe");
 	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(Player_Event_UnEquip_Axe, "Player.Event.UnEquip.Axe");
@@ -37,5 +36,9 @@ namespace RPGDemoGameplayTags
 	// #########################State  Begin###############
 	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(Player_State_JumpToFinish, "Player.State.JumpToFinish");
 	// #########################State  End#################
+
+	// #########################Enemy Weapon  Begin###############
+	RPGDEMO_API UE_DEFINE_GAMEPLAY_TAG(Enemy_Weapon, "Enemy.Weapon");
+	// #########################Enemy Weapon  End###############
 	
 }
