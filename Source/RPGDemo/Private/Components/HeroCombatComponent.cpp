@@ -16,3 +16,8 @@ AHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag InTag)
 {
 	return Cast<AHeroWeapon>(HeroWeaponComponent->GetCharacterCarriedWeaponByTag(InTag));
 }
+
+UWeaponComponentBase* UHeroCombatComponent::GetWeaponComponentBase() const
+{
+	return GetHeroWeaponComponent();
+}

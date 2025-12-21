@@ -5,6 +5,7 @@
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystem/RPGAbilitySystemComponent.h"
+#include "Interfaces/PawnComponentInterface.h"
 
 URPGAbilitySystemComponent* UDemoBlueprintFunctionLibrary::NativeGetASCFromActor(AActor* InActor)
 {
@@ -52,4 +53,23 @@ void UDemoBlueprintFunctionLibrary::K2_DoesHaveGameplayTag(AActor* InActor, FGam
 	{
 		OutConfirm = EConfirmType::No;
 	}
+}
+
+UPawnCombatComponent* UDemoBlueprintFunctionLibrary::NativeGetPawnCombatComponentFromActor(AActor* InActor)
+{
+	check(InActor);
+
+	if (IPawnComponentInterface* PCI = Cast<IPawnComponentInterface>(InActor))
+	{
+		return PCI->GetPawnCombatComponent();
+	}
+	return nullptr;
+}
+
+UPawnCombatComponent* UDemoBlueprintFunctionLibrary::BP_GetPawnCombatComponentFromActor(AActor* InActor,
+	EValidType& OutValidType)
+{
+	UPawnCombatComponent* PCC = NativeGetPawnCombatComponentFromActor(InActor);
+	OutValidType = PCC ? EValidType::Valid : EValidType::Invalid;
+	return PCC;
 }

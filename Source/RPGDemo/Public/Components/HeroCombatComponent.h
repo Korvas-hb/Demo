@@ -9,6 +9,7 @@
 
 class AHeroWeapon;
 class UHeroWeaponComponent;
+class UWeaponComponentBase;
 
 UCLASS()
 class RPGDEMO_API UHeroCombatComponent : public UPawnCombatComponent
@@ -23,6 +24,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	AHeroWeapon* GetHeroCarriedWeaponByTag(FGameplayTag InTag) const;
+
+	virtual UWeaponComponentBase* GetWeaponComponentBase() const override;
 	
 private:
 	UPROPERTY(VisibleAnywhere, Category="Weapon", meta=(AllowPrivateAccess=true))

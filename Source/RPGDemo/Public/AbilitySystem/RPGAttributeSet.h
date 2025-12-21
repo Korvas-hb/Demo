@@ -44,4 +44,12 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Damage")
 	FGameplayAttributeData DefensePower;
 	ATTRIBUTE_ACCESSORS(URPGAttributeSet, DefensePower);
+
+	UPROPERTY(BlueprintReadOnly, Category="Experience")
+	FGameplayAttributeData CurrentExperience;
+	ATTRIBUTE_ACCESSORS(URPGAttributeSet, CurrentExperience);
+
+	UPROPERTY(BlueprintReadOnly, Category="Experience")
+	FGameplayAttributeData MaxExperience;
+	ATTRIBUTE_ACCESSORS(URPGAttributeSet, MaxExperience);
 };

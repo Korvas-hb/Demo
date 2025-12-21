@@ -12,6 +12,19 @@ void UDataAsset_StartUpDataBase::GiveDataAssetAbilitiesToASC(URPGAbilitySystemCo
 
 	GrantDataAssetAbilites(OnGivenAbilities, ASC, ApplyLevel);
 	GrantDataAssetAbilites(OnReactiveAbilities, ASC, ApplyLevel);
+
+	if (!StartUpGameplayEffects.IsEmpty())
+	{
+		for (const TSubclassOf<UGameplayEffect> EffectClass : StartUpGameplayEffects)
+		{
+			if (!EffectClass) continue;;
+			
+			UGameplayEffect* GE = EffectClass->GetDefaultObject<UGameplayEffect>();
+			FGameplayEffectSpec GESpec(GE,ASC->MakeEffectContext(),ApplyLevel);
+			ASC->ApplyGameplayEffectSpecToSelf(GESpec);
+		}
+	}
+	
 }
 
 void UDataAsset_StartUpDataBase::GrantDataAssetAbilites(const TArray<TSubclassOf<URPGGameplayAbility>> InAbilitiesGrant,

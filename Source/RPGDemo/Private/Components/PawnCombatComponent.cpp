@@ -3,3 +3,7 @@
 
 #include "Components/PawnCombatComponent.h"
 
+UWeaponComponentBase* UPawnCombatComponent::GetWeaponComponentBase() const
+{
+	return nullptr;
+}

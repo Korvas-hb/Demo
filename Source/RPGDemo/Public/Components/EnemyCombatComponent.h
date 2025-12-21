@@ -8,6 +8,7 @@
 #include "EnemyCombatComponent.generated.h"
 
 class UEnemyWeaponComponent;
+class UWeaponComponentBase;
 /**
  * 
  */
@@ -23,6 +24,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	AWeaponBase* GetHeroCarriedWeaponByTag(FGameplayTag InTag) const;
+
+	virtual UWeaponComponentBase* GetWeaponComponentBase() const override;
 	
 private:
 	UPROPERTY(VisibleAnywhere, Category="Weapon", meta=(AllowPrivateAccess=true))

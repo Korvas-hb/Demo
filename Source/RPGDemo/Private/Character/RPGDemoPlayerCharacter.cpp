@@ -13,6 +13,11 @@ ARPGDemoPlayerCharacter::ARPGDemoPlayerCharacter()
 	HeroCombatComponent = CreateDefaultSubobject<UHeroCombatComponent>("HeroCombatComponent");
 }
 
+UPawnCombatComponent* ARPGDemoPlayerCharacter::GetPawnCombatComponent() const
+{
+	return GetHeroCombatComponent();
+}
+
 void ARPGDemoPlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);

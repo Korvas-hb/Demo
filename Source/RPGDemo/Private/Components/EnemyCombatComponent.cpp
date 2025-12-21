@@ -16,3 +16,8 @@ AWeaponBase* UEnemyCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag InTag
 {
 	return Cast<AWeaponBase>(EnemyWeaponComponent->GetCharacterCarriedWeaponByTag(InTag));
 }
+
+UWeaponComponentBase* UEnemyCombatComponent::GetWeaponComponentBase() const
+{
+	return GetEnemyWeaponComponent();
+}

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Character/RPGDemoCharacterBase.h"
+#include "Interfaces/PawnComponentInterface.h"
 #include "RPGDemoPlayerCharacter.generated.h"
 
 class UHeroCombatComponent;
@@ -12,7 +13,7 @@ class UDataAsset_StartUpDataBase;
  * 
  */
 UCLASS()
-class RPGDEMO_API ARPGDemoPlayerCharacter : public ARPGDemoCharacterBase
+class RPGDEMO_API ARPGDemoPlayerCharacter : public ARPGDemoCharacterBase,public IPawnComponentInterface
 {
 	GENERATED_BODY()
 
@@ -23,6 +24,10 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	UHeroCombatComponent* K2_GetHeroCombatComponent() const {return HeroCombatComponent;}
+
+	// ~Begin IPawnCombatInterface
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+	// ~End
 	
 protected:
 	virtual void PossessedBy(AController* NewController) override;
