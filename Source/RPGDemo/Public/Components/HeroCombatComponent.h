@@ -26,6 +26,11 @@ public:
 	AHeroWeapon* GetHeroCarriedWeaponByTag(FGameplayTag InTag) const;
 
 	virtual UWeaponComponentBase* GetWeaponComponentBase() const override;
+
+protected:
+	virtual void OnRegisterFinishedCallBackFun(bool bIsFinished, FGameplayTag InWeaponTag) override;
+	virtual void OnHitTargetActor(AActor* InHitedActor) override;
+	virtual void OnLeaveHitTargetActor(AActor* InteractedActor) override;
 	
 private:
 	UPROPERTY(VisibleAnywhere, Category="Weapon", meta=(AllowPrivateAccess=true))

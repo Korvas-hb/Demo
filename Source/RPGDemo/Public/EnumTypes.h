@@ -12,3 +12,11 @@ enum class EValidType : uint8
 	Valid,
 	Invalid
 };
+
+UENUM(BlueprintType)
+enum class EToggleDamageType: uint8
+{
+	CurrentEquipWeapon,
+	LeftHandEquip,
+	RightHandEquip
+};

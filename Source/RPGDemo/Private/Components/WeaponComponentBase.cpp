@@ -3,8 +3,11 @@
 
 #include "Components/WeaponComponentBase.h"
 
+#include "Components/BoxComponent.h"
+#include "Weapon/WeaponBase.h"
+
 void UWeaponComponentBase::RegisterSpawnedWeapon(AWeaponBase* InWeapon, FGameplayTag InWeaponTag,
-	bool bRegisterAsEquipped)
+                                                 bool bRegisterAsEquipped)
 {
 	if (InWeapon && InWeaponTag.IsValid())
 	{
@@ -17,13 +20,20 @@ void UWeaponComponentBase::RegisterSpawnedWeapon(AWeaponBase* InWeapon, FGamepla
 			}
 		}
 
-		if (bHasContain) return;
+		if (bHasContain)
+		{
+			OnRegisterFinished.ExecuteIfBound(false, FGameplayTag());
+			return;
+		}
+
 		FRegisterWeaponWithTag RegisterWeapon(InWeapon, InWeaponTag, bRegisterAsEquipped);
 		RegisterWeaponWithTagArray.Push(RegisterWeapon);
 		if (bRegisterAsEquipped)
 		{
 			CurrentCharacterEquippingTag = InWeaponTag;
 		}
+
+		OnRegisterFinished.ExecuteIfBound(true, InWeaponTag);
 	}
 }
 
@@ -52,11 +62,30 @@ AWeaponBase* UWeaponComponentBase::GetCharacterCurrentEquipWeapon() const
 void UWeaponComponentBase::SetCurrentEquipWeaponTag(FGameplayTag InWeaponTag)
 {
 	CurrentCharacterEquippingTag = CurrentCharacterEquippingTag != InWeaponTag
-							   ? InWeaponTag
-							   : CurrentCharacterEquippingTag;
+		                               ? InWeaponTag
+		                               : CurrentCharacterEquippingTag;
 }
 
 void UWeaponComponentBase::RemoveCurrentEquipWeaponTag()
 {
 	CurrentCharacterEquippingTag = FGameplayTag();
+}
+
+void UWeaponComponentBase::ToggleWeaponCollision(bool bShouldEnable, EToggleDamageType ToggleDamage)
+{
+	if (ToggleDamage == EToggleDamageType::CurrentEquipWeapon)
+	{
+		AWeaponBase* Weapon = GetCharacterCurrentEquipWeapon();
+
+		if (bShouldEnable)
+		{
+			Weapon->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+			UE_LOG(LogTemp, Warning, TEXT("Open"));
+		}
+		else
+		{
+			Weapon->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
+			UE_LOG(LogTemp, Warning, TEXT("Close"));
+		}
+	}
 }

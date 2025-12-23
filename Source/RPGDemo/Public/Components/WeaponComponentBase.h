@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "EnumTypes.h"
 #include "GameplayTagContainer.h"
 #include "Components/PawnExtensionComponentBase.h"
 #include "StructForNeedInfo.h"
@@ -10,14 +11,14 @@
 
 struct FRegisterWeaponWithTag;
 class AWeaponBase;
-/**
- * 
- */
+
+DECLARE_DELEGATE_TwoParams(FOnRegisterFinished, bool, FGameplayTag);
+
 UCLASS()
 class RPGDEMO_API UWeaponComponentBase : public UPawnExtensionComponentBase
 {
 	GENERATED_BODY()
-		
+
 public:
 	UFUNCTION(BlueprintCallable, Category="Combat|Weapon")
 	void RegisterSpawnedWeapon(AWeaponBase* InWeapon, FGameplayTag InWeaponTag, bool bRegisterAsEquipped = false);
@@ -33,12 +34,18 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Combat|Weapon")
 	AWeaponBase* GetCharacterCurrentEquipWeapon() const;
 
-	UFUNCTION(BlueprintCallable,Category="Combat|Weapon")
+	UFUNCTION(BlueprintCallable, Category="Combat|Weapon")
 	void SetCurrentEquipWeaponTag(FGameplayTag InWeaponTag);
 
-	UFUNCTION(BlueprintCallable,Category="Combat|Weapon")
+	UFUNCTION(BlueprintCallable, Category="Combat|Weapon")
 	void RemoveCurrentEquipWeaponTag();
-	
+
+	UFUNCTION(BlueprintCallable, Category="Combat")
+	void ToggleWeaponCollision(bool bShouldEnable,
+	                           EToggleDamageType ToggleDamage = EToggleDamageType::CurrentEquipWeapon);
+
+	FOnRegisterFinished OnRegisterFinished;
+
 private:
 	TArray<FRegisterWeaponWithTag> RegisterWeaponWithTagArray;
 };
