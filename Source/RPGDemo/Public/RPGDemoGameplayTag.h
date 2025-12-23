@@ -42,4 +42,10 @@ namespace RPGDemoGameplayTags
 	// #########################Enemy Weapon  Begin###############
 	RPGDEMO_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon);
 	// #########################Enemy Weapon  End###############
+
+
+	// #########################Shared Event  Begin###############
+	RPGDEMO_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);
+	// #########################Shared Event  End###############
+	
 }

@@ -13,6 +13,7 @@ struct FRegisterWeaponWithTag;
 class AWeaponBase;
 
 DECLARE_DELEGATE_TwoParams(FOnRegisterFinished, bool, FGameplayTag);
+DECLARE_DELEGATE(FOnResetArray);
 
 UCLASS()
 class RPGDEMO_API UWeaponComponentBase : public UPawnExtensionComponentBase
@@ -45,6 +46,7 @@ public:
 	                           EToggleDamageType ToggleDamage = EToggleDamageType::CurrentEquipWeapon);
 
 	FOnRegisterFinished OnRegisterFinished;
+	FOnResetArray OnResetArray;
 
 private:
 	TArray<FRegisterWeaponWithTag> RegisterWeaponWithTagArray;

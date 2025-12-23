@@ -25,4 +25,7 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, Category="Weapon", meta=(AllowPrivateAccess=true))
 	TObjectPtr<UWeaponComponentBase> WeaponComponent;
+
+	TArray<AActor*> HitTargetActors;
+	
 };

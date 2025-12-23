@@ -3,6 +3,8 @@
 
 #include "Components/HeroCombatComponent.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
+#include "RPGDemoGameplayTag.h"
 #include "Components/HeroWeaponComponent.h"
 #include "Weapon/HeroWeapon.h"
 
@@ -10,6 +12,11 @@ UHeroCombatComponent::UHeroCombatComponent()
 {
 	HeroWeaponComponent = CreateDefaultSubobject<UHeroWeaponComponent>("HeroWeaponComponent");
 	HeroWeaponComponent->OnRegisterFinished.BindUObject(this, &ThisClass::OnRegisterFinishedCallBackFun);
+	HeroWeaponComponent->OnResetArray.BindLambda([this]()-> void
+	{
+		HitTargetActors.Empty();
+		UE_LOG(LogTemp,Warning,TEXT("Clear Hit Target Actors"));
+	});
 }
 
 AHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag InTag) const
@@ -27,20 +34,30 @@ void UHeroCombatComponent::OnRegisterFinishedCallBackFun(bool bIsFinished, FGame
 {
 	if (bIsFinished)
 	{
-		HeroWeaponComponent->GetCharacterCarriedWeaponByTag(InWeaponTag)->OnWeaponHitTarget.BindUObject(this,&ThisClass::OnHitTargetActor);
-		HeroWeaponComponent->GetCharacterCarriedWeaponByTag(InWeaponTag)->OnWeaponLeaveFromHitTarget.BindUObject(this,&ThisClass::OnLeaveHitTargetActor);
+		HeroWeaponComponent->GetCharacterCarriedWeaponByTag(InWeaponTag)->OnWeaponHitTarget.BindUObject(
+			this, &ThisClass::OnHitTargetActor);
+		HeroWeaponComponent->GetCharacterCarriedWeaponByTag(InWeaponTag)->OnWeaponLeaveFromHitTarget.BindUObject(
+			this, &ThisClass::OnLeaveHitTargetActor);
+		HitTargetActors.Empty();
 	}
 }
 
 void UHeroCombatComponent::OnHitTargetActor(AActor* InHitedActor)
 {
-	Super::OnHitTargetActor(InHitedActor);
+	if (HitTargetActors.Contains(InHitedActor)) return;
+
+	HitTargetActors.AddUnique(InHitedActor);
+
+	FGameplayEventData Payload;
+	Payload.Instigator = GetOwningPawn();
+	Payload.Target = InHitedActor;
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwningPawn(),RPGDemoGameplayTags::Shared_Event_MeleeHit,Payload);
+	
+	
 	UE_LOG(LogTemp, Warning, TEXT("UHeroCombatComponent::OnHitTargetActor"));
 }
 
 void UHeroCombatComponent::OnLeaveHitTargetActor(AActor* InteractedActor)
 {
-	Super::OnLeaveHitTargetActor(InteractedActor);
 	UE_LOG(LogTemp, Warning, TEXT("UHeroCombatComponent::OnLeaveHitTargetActor"));
 }
-

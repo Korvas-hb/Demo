@@ -85,6 +85,7 @@ void UWeaponComponentBase::ToggleWeaponCollision(bool bShouldEnable, EToggleDama
 		else
 		{
 			Weapon->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
+			OnResetArray.ExecuteIfBound();
 			UE_LOG(LogTemp, Warning, TEXT("Close"));
 		}
 	}
